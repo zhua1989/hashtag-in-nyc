@@ -8,7 +8,7 @@ function initMap(data) {
     { featureType: "poi", stylers: [ {visibility: "off"} ] },
     { featureType: "road.highway", stylers: [ {visibility: "off"} ] },
     { featureType: "administrative.locality", stylers: [ {visibility: "off"} ] },
-    { featureType: "water", stylers: [ {color: "#009933"}, {saturation: 100} ] },
+    // { featureType: "water", stylers: [ {color: "#009933"}, {saturation: 50} ] },
     { featureType: "landscape", stylers: [ {color: "#ffffff"}, {saturation: 50} ] },
     { featureType: "road.arterial", stylers: [ {visibility: 'off'} ] },
     { featureType: "transit", stylers: [ {visibility: 'off'} ] }
