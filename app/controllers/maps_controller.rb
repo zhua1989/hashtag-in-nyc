@@ -1,6 +1,10 @@
 class MapsController < ApplicationController
 
-  # def push_json
+test = "this is a test string SUP"
+
+
+  # def update
+  #     render: nothing => true
   #     # client-side makes an ajax request to get this
   #
   #     @test = {what: "is up"}
@@ -10,16 +14,30 @@ class MapsController < ApplicationController
   # end
 
   def show
-    endpoint = "https://api.instagram.com/v1/locations/search?lat=40.7410986&lng=-73.9888682&client_id=62b689a145a94aa2863cec35efc57e12"
-    buffer = open(endpoint, "User-Agent" => "ruby").read
-    result = JSON.parse(buffer)
+    seed_points = [
+      {lat: 40.748701, lng: -74.004180},
+      {lat: 40.752124, lng: -74.001958},
+      {lat: 40.750396, lng: -74.002958},
+      {lat: 40.745060, lng: -74.006745},
+      {lat: 40.745512, lng: -74.006467}
+    ]
 
-    @ig_data = result['data']
+      @ig_data = []
+
+      # timeout function in ruby exists, look that up
+      # use timeout to update this call repeatedly
+      # go do FOREVER
+      # on update, reset @ig_data, and then rerender the markers
+
+    seed_points.each do |point|
+      endpoint = "https://api.instagram.com/v1/media/search?lat="+point[:lat].to_s+"&lng="+point[:lng].to_s+"&distance=100&client_id=62b689a145a94aa2863cec35efc57e12"
+      buffer = open(endpoint, "User-Agent" => "ruby").read
+      result = JSON.parse(buffer)
+
+      @ig_data.push(result['data'])
+    end
 
     gon.data = @ig_data
-    #
-    # binding.pry
-
 
   end
 

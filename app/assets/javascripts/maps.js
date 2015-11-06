@@ -1,33 +1,62 @@
 function initMap(data) {
   main_map = new google.maps.Map(document.getElementById('map-canvas'), {
-    center: {lat: 40.7410986, lng: -73.9888682},
-    zoom: 12
+    center: {lat: 40.745512, lng: -74.006467},
+    zoom: 15
   });
 
-  gon.data.forEach(function(post){
-    pos = {lat: post.latitude, lng: post.longitude}
-    title = post.name
+  var styleArray = [
+    { featureType: "poi", stylers: [ {visibility: "off"} ] },
+    { featureType: "road.highway", stylers: [ {visibility: "off"} ] },
+    { featureType: "administrative.locality", stylers: [ {visibility: "off"} ] },
+    { featureType: "water", stylers: [ {color: "#009933"}, {saturation: 100} ] },
+    { featureType: "landscape", stylers: [ {color: "#ffffff"}, {saturation: 50} ] },
+    { featureType: "road.arterial", stylers: [ {visibility: 'off'} ] },
+    { featureType: "transit", stylers: [ {visibility: 'off'} ] }
+  ]
 
-    createMarker(pos, main_map, title)
+  gon.data.forEach(function(point){
+    point.forEach(function(post){
+          pos = {lat: post.location.latitude, lng: post.location.longitude}
+          title = post.tags
+          createMarker(pos, main_map, title)
+    })
   })
 
-
+  main_map.setOptions({styles: styleArray})
 }
+
+// To get more/better data:
+// - do a while loop that terminates on arr.length < 20
+// -while running, call ajax
+//   -reset the URL each time to get next_page
 
 $(document).ready(function(){
   initMap(gon.data);
-  console.log(gon.data)
+  // timeout to update the
+
 })
 
 
 
 function createMarker(coords, map, title){
-  console.log(coords, map, title)
+  var hashtags;
+
+  if (typeof title !== "string") {
+    title.forEach(function(tag, i){
+      tag = "#" + tag
+      title[i] = tag
+    })
+    hashtags = title.join(" ")
+  }
+
+
   marker = new google.maps.Marker({
     position: coords,
     map: map,
-    title: title
+    title: hashtags
   });
+
+  marker.setIcon('/app/assets/icons/leaf-icon.png')
 }
 //
 //
