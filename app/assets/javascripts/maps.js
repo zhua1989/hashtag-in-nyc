@@ -56,7 +56,7 @@ function createMarker(coords, map, title){
     title: hashtags
   });
 
-  marker.setIcon('/app/assets/icons/leaf-icon.png')
+  marker.setIcon('http://i.imgur.com/WSMBrTP.png?1')
 }
 //
 //
