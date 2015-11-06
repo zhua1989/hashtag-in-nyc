@@ -33,7 +33,7 @@ function initMap(data) {
 $(document).ready(function(){
   initMap(gon.data);
   // timeout to update the
-
+  console.log(gon.imgurl);
 })
 
 
@@ -53,11 +53,20 @@ function createMarker(coords, map, title){
   marker = new google.maps.Marker({
     position: coords,
     map: map,
-    title: hashtags
+    title: hashtags,
+    url: "google.com"
   });
 
   marker.setIcon('http://i.imgur.com/WSMBrTP.png?1')
+
+  marker.addListener('click', function(){
+    main_map.setCenter(marker.getPosition());
+    alert('INSTAGRAM!!!!')
+  })
 }
+
+
+
 //
 //
 // // get location id
