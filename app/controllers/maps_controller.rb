@@ -28,6 +28,7 @@ class MapsController < ApplicationController
     ]
 
       @ig_data = []
+      @imgurl = []
 
       # timeout function in ruby exists, look that up
       # use timeout to update this call repeatedly
@@ -41,9 +42,14 @@ class MapsController < ApplicationController
       result = JSON.parse(buffer)
 
       @ig_data.push(result['data'])
+      @imgurl.push(result['data'][0]['images']['thumbnail']['url'])
+      # puts result['data'][0]['link']
+      # puts result['data'][0]['images']['thumbnail']['url']
+
     end
 
     gon.data = @ig_data
+    gon.imgurl = @imgurl
 
   end
 
