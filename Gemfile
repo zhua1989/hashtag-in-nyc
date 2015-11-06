@@ -1,8 +1,6 @@
 source 'https://rubygems.org'
 
-source 'https://rails-assets.org' do
-  gem 'rails-assets-foundation'
-end
+gem 'bootstrap'
 
 gem 'gon'
 
