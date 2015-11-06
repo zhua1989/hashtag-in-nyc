@@ -1,20 +1,28 @@
 function initMap(data) {
-  map = new google.maps.Map(document.getElementById('map-canvas'), {
+  main_map = new google.maps.Map(document.getElementById('map-canvas'), {
     center: {lat: 40.7410986, lng: -73.9888682},
     zoom: 12
   });
 
-  // markers from data
+  gon.data.forEach(function(post){
+    pos = {lat: post.latitude, lng: post.longitude}
+    title = post.name
+
+    createMarker(pos, main_map, title)
+  })
+
 
 }
 
 $(document).ready(function(){
-  initMap();
+  initMap(gon.data);
+  console.log(gon.data)
 })
 
 
 
 function createMarker(coords, map, title){
+  console.log(coords, map, title)
   marker = new google.maps.Marker({
     position: coords,
     map: map,
