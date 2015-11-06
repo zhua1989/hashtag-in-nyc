@@ -26,29 +26,17 @@ function createMarker(coords, map, title){
 }
 
 
-// "pagination": {
-//     "next_url": "https://api.instagram.com/v1/tags/puppy/media/recent?access_token=fb2e77d.47a0479900504cb3ab4a1f626d174d2d&max_id=13872296",
-//     "next_max_id": "13872296"
-// }
-
-
 // get location id
 // https://api.instagram.com/v1/locations/search?lat=1&lng=2&access_token=Your-Act
 var query_string = 'https://api.instagram.com/v1/locations/search?lat=40.7410986&lng=-73.9888682&client_id=62b689a145a94aa2863cec35efc57e12'
 var next_max_id  = 1111879330113488870
+var loc_string   = 'https://api.instagram.com/v1/locations/127540101/media/recent?client_id=62b689a145a94aa2863cec35efc57e12'
 
-function getIGdata(string, max_id){
+function getIGdata(){
   $.ajax({
-    url: string+"&max_id="+max_id,
+    url: 'https://api.instagram.com/v1/locations/search?lat=40.7410986&lng=-73.9888682&client_id=62b689a145a94aa2863cec35efc57e12',
     crossDomain: true,
     dataType:'jsonp',
-    data: {
-      distance: '.0001',
-      pagination: {
-        next_url: string+"&max_id="+max_id,
-        next_max_id: max_id
-      }
-    },
     method:'get',
     success: function(response){ console.log(response) }
   })
