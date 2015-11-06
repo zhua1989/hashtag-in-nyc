@@ -36,7 +36,7 @@ class MapsController < ApplicationController
 
     seed_points.each do |point|
       puts "found a point!"
-      endpoint = "https://api.instagram.com/v1/media/search?lat="+point[:lat].to_s+"&lng="+point[:lng].to_s+"&count=33&distance=100&client_id=62b689a145a94aa2863cec35efc57e12"
+      endpoint = "https://api.instagram.com/v1/media/search?lat="+point[:lat].to_s+"&lng="+point[:lng].to_s+"&distance=150&client_id=62b689a145a94aa2863cec35efc57e12"
       buffer = open(endpoint, "User-Agent" => "ruby").read
       result = JSON.parse(buffer)
 
