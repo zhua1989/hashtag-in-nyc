@@ -1,7 +1,5 @@
 class MapsController < ApplicationController
 
-test = "this is a test string SUP"
-
 
   # def update
   #     render: nothing => true
